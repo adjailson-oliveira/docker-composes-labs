@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      AWS_ACCESS_KEY_ID: admin
+      AWS_SECRET_ACCESS_KEY: 123secret
+
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    depends_on:
+      - dynamodb
+    ports:
+      - "8001:8001"
+    environment:
+      DYNAMO_ENDPOINT: http://dynamodb:8000
+      AWS_ACCESS_KEY_ID: admin
+      AWS_SECRET_ACCESS_KEY: 123secret
