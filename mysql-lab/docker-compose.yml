@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  mysql-db-local-dev:
+    image: mysql
+    volumes:
+      - dja-dev-vol-mysql:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: dja-dev
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: "%"
+
+volumes:
+  dja-dev-vol-mysql:
